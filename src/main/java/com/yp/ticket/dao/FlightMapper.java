@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -18,4 +19,7 @@ public interface FlightMapper extends BaseMapper<FlightModel> {
 
     @Select("select * from qunaer_flight_info where id = #{id}")
     FlightModel selectById(Integer id);
+
+    @Select("delete from qunaer_flight_info where Date(dep_date) < CURDATE()")
+    void delet();
 }
